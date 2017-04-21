@@ -62,4 +62,18 @@ trait Immutable
             unset($this->{$property});
         }
     }
+
+    /**
+     * @return array
+     */
+    final public function toArray()
+    {
+        $result = [];
+
+        foreach ($this->_userDefinedProperties as $k => $v) {
+            $result[$k] = $this->{$k};
+        }
+
+        return $result;
+    }
 }

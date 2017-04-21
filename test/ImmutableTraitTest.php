@@ -95,6 +95,20 @@ class ImmutableTraitTest extends \PHPUnit_Framework_TestCase
      * @test
      * @dataProvider objectProvider
      */
+    public function it_returns_array_data_on_array_call(Foo $foo)
+    {
+        $foo->bar = 'qwe';
+        $fooArray = $foo->toArray();
+        
+        $this->assertInternalType('array', $fooArray);
+        $this->assertArrayHasKey('bar', $fooArray);
+        $this->assertEquals($fooArray['bar'], 'qwe');
+    }
+
+    /**
+     * @test
+     * @dataProvider objectProvider
+     */
     public function is_should_have_the_same_values_after_deserealization(Foo $foo)
     {
         $foo->bar = 'bar';
